@@ -4,9 +4,9 @@ import pandas as pd
 from PIL import Image
 import numpy as np
 import torchvision.transforms as transforms
-from models import model_attributes
+from ..models import model_attributes
 from torch.utils.data import Dataset, Subset
-from data.confounder_dataset import ConfounderDataset
+from .confounder_dataset import ConfounderDataset
 
 class CelebADataset(ConfounderDataset):
     """

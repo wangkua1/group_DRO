@@ -2,8 +2,8 @@ import torch
 from torch.utils.data import Subset
 import torchvision
 import torchvision.transforms as transforms
-from models import model_attributes
-from data.utils import *
+from ..models import model_attributes
+from .utils import *
 
 ### CIFAR10 ###
 def load_CIFAR10(args, train):

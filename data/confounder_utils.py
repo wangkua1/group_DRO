@@ -4,12 +4,12 @@ import pandas as pd
 from PIL import Image
 import numpy as np
 import torchvision.transforms as transforms
-from models import model_attributes
+from ..models import model_attributes
 from torch.utils.data import Dataset, Subset
-from data.celebA_dataset import CelebADataset
-from data.cub_dataset import CUBDataset
-from data.dro_dataset import DRODataset
-from data.multinli_dataset import MultiNLIDataset
+from .celebA_dataset import CelebADataset
+from .cub_dataset import CUBDataset
+from .dro_dataset import DRODataset
+from .multinli_dataset import MultiNLIDataset
 
 ################
 ### SETTINGS ###

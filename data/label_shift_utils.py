@@ -5,11 +5,11 @@ from PIL import Image
 import numpy as np
 import torchvision
 import torchvision.transforms as transforms
-from models import model_attributes
+from ..models import model_attributes
 from torch.utils.data import Dataset, Subset
-from data.dro_dataset import DRODataset
-from data.utils import *
-from data.torchvision_datasets import *
+from .dro_dataset import DRODataset
+from .utils import *
+from .torchvision_datasets import *
 
 
 ########################
