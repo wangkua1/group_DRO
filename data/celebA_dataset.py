@@ -23,13 +23,14 @@ class CelebADataset(ConfounderDataset):
         self.model_type = model_type
 
         # Read in attributes
-        self.attrs_df = pd.read_csv(
-            os.path.join(root_dir, 'data', 'list_attr_celeba.csv'))
-
+        self.attrs_df = pd.read_csv(os.path.join(root_dir, 'list_attr_celeba.csv'), skiprows=1, index_col=None, delimiter=r"\s+")
         # Split out filenames and attribute names
-        self.data_dir = os.path.join(self.root_dir, 'data', 'img_align_celeba')
-        self.filename_array = self.attrs_df['image_id'].values
-        self.attrs_df = self.attrs_df.drop(labels='image_id', axis='columns')
+        self.data_dir = os.path.join(self.root_dir, 'img_align_celeba')
+        # import ipdb; ipdb.set_trace()
+        # self.filename_array = self.attrs_df['image_id'].values
+        self.filename_array = self.attrs_df.index.values
+        self.attrs_df.index = np.arange(len(self.attrs_df))
+        # self.attrs_df = self.attrs_df.drop(labels='image_id', axis='columns')
         self.attr_names = self.attrs_df.columns.copy()
 
         # Then cast attributes to numpy array and set them to 0 and 1
@@ -54,8 +55,8 @@ class CelebADataset(ConfounderDataset):
         self.group_array = (self.y_array*(self.n_groups/2) + self.confounder_array).astype('int')
 
         # Read in train/val/test splits
-        self.split_df = pd.read_csv(
-            os.path.join(root_dir, 'data', 'list_eval_partition.csv'))
+        self.split_df = pd.read_csv(os.path.join(root_dir, 'list_eval_partition.csv'),delimiter=r"\s+", names=['filename', 'partition'])
+        # import ipdb; ipdb.set_trace()
         self.split_array = self.split_df['partition'].values
         self.split_dict = {
             'train': 0,
